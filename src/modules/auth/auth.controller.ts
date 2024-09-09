@@ -54,9 +54,12 @@ export class AuthController {
       username: signUpDto.username,
       email: signUpDto.email,
       password: signUpDto.password,
+      confirmPassword:signUpDto.password,
       createdAt: new Date(),
     };
 
-    return await this.authService.singUp(payLoad);
+    const test= await this.authService.singUp(payLoad);
+    console.log('test', test)
+    return test;
   }
 }
