@@ -17,21 +17,30 @@ export class UserService {
   }
 
   async create(createUserDto: CreateUserDto) {
-    const { email, password, confirmPassword } = createUserDto;
-    const userExisting = await this.userRepository.findOne({ email: email });
+    // const { email, password, confirmPassword } = createUserDto;
+    // const userExisting = await this.userRepository.findOne({ email: email });
 
-    if (userExisting) {
-      return console.log('this user already exist');
-    }
+    // if (userExisting) {
+    //   return console.log('this user already exist');
+    // }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // const hashedPassword = await bcrypt.hash(password, 10);
+try {
 
-    const userCreated = new this.userRepository({
-      ...createUserDto,
-      hashedPassword,
-      confirmPassword: hashedPassword,
-    });
+  const userCreated = new this.userRepository({
+    ...createUserDto,
+    // hashedPassword,
+    // confirmPassword: hashedPassword,
+  });
 
-    return await userCreated.save();
+  return await userCreated.save();
+
+
+}catch(error){
+  console.log('error')
+
+
+}
+    
   }
 }
